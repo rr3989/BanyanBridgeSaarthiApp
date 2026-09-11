@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#667eea">
+    <title>BanyanBridgeSaarthi - AI-Powered Classroom Co-Pilot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="container">
+                <div class="header">
+                    <h1>BanyanBridgeSaarthi</h1>
+                    <p class="subtitle">AI-Powered Classroom Co-Pilot</p>
+                </div>
+                <div class="content">
+                    <div class="info-card">
+                        <h2>Welcome, Teacher!</h2>
+                        <p>Diagnose learning gaps and get actionable insights for your classroom.</p>
+                        <button class="tutorial-link" onclick="showScreen('onboarding-screen')">
+                            First time? Take a tour →
+                        </button>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Capture Assessment
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('dashboard-screen')">
+                            <span class="btn-icon">📊</span>
+                            View Class Dashboard
+                        </button>
+                        <button class="btn btn-tertiary" onclick="showScreen('results-screen')">
+                            <span class="btn-icon">📋</span>
+                            Recent Results
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('briefing-screen')">
+                            <span class="btn-icon">🎯</span>
+                            Pre-Class Briefing
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('students-screen')">
+                            <span class="btn-icon">👥</span>
+                            Student Profiles
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('settings-screen')">
+                            <span class="btn-icon">⚙️</span>
+                            Settings
+                        </button>
+                        <button class="btn btn-quaternary" onclick="window.open('ai-features.html', '_blank')">
+                            <span class="btn-icon">🤖</span>
+                            AI Features
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('assessment-gallery-screen')">
+                            <span class="btn-icon">📝</span>
+                            Assessment Gallery
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('voice-recording-screen')">
+                            <span class="btn-icon">🎤</span>
+                            Voice Assessment
+                        </button>
+                        <button class="btn btn-quaternary" onclick="showScreen('weekly-report-screen')">
+                            <span class="btn-icon">📈</span>
+                            Weekly Report
+                        </button>
+                        <button class="btn btn-quaternary" onclick="toggleDarkMode()">
+                            <span class="btn-icon">🌙</span>
+                            Dark Mode
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capture Screen -->
+        <div id="capture-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Capture Student Work</h1>
+                </div>
+                <div class="content">
+                    <div class="camera-placeholder">
+                        <div class="camera-icon">📷</div>
+                        <p>Camera preview will appear here</p>
+                        <p class="instruction">Point camera at student's written work</p>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="simulateCapture()">
+                            <span class="btn-icon">📸</span>
+                            Capture
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Assessment Results</h1>
+                </div>
+                <div class="content">
+                    <div class="result-card">
+                        <div class="student-info">
+                            <h3>Rahul Kumar</h3>
+                            <p class="timestamp">Today, 10:30 AM</p>
+                        </div>
+                        <div class="problem-display">
+                            <div class="problem">
+                                <span class="label">Problem:</span>
+                                <span class="value">53 - 27 = ?</span>
+                            </div>
+                            <div class="answer incorrect">
+                                <span class="label">Student Answer:</span>
+                                <span class="value">34</span>
+                            </div>
+                            <div class="answer correct">
+                                <span class="label">Correct Answer:</span>
+                                <span class="value">26</span>
+                            </div>
+                        </div>
+                        <div class="error-analysis">
+                            <div class="error-type">
+                                <span class="label">Error Type:</span>
+                                <span class="value error">Place Value Error</span>
+                            </div>
+                            <div class="teacher-insight">
+                                <span class="label">Teacher Insight:</span>
+                                <p>Student subtracts smaller digit from larger regardless of position. Consider using visual regrouping activities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="showScreen('home-screen')">
+                            Back to Home
+                        </button>
+                        <button class="btn btn-primary" onclick="showScreen('dashboard-screen')">
+                            View Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Class Dashboard</h1>
+                </div>
+                <div class="content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">35</div>
+                            <div class="stat-label">Total Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Assessments Today</div>
+                        </div>
+                        <div class="stat-card highlight">
+                            <div class="stat-value">40%</div>
+                            <div class="stat-label">Place Value Errors</div>
+                        </div>
+                    </div>
+                    <div class="student-list">
+                        <h3>Recent Students</h3>
+                        <div class="student-item">
+                            <div class="student-name">Rahul Kumar</div>
+                            <div class="student-assessments">3 assessments</div>
+                        </div>
+                        <div class="student-item">
+                            <div class="student-name">Priya Singh</div>
+                            <div class="student-assessments">2 assessments</div>
+                        </div>
+                        <div class="student-item">
+                            <div class="student-name">Amit Kumar</div>
+                            <div class="student-assessments">4 assessments</div>
+                        </div>
+                        <div class="student-item">
+                            <div class="student-name">Sita Devi</div>
+                            <div class="student-assessments">1 assessment</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Capture New Assessment
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="btn-icon">📈</span>
+                            View Detailed Reports
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Briefing Screen -->
+        <div id="briefing-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Pre-Class Briefing</h1>
+                    <p class="subtitle">Today's Insights & Recommendations</p>
+                </div>
+                <div class="content">
+                    <div class="briefing-card">
+                        <div class="briefing-header">
+                            <span class="date">Today, 8:45 AM</span>
+                            <span class="class-info">Class 3-A • 35 Students</span>
+                        </div>
+                        <div class="key-insight">
+                            <h3>🎯 Key Insight</h3>
+                            <p>40% of students are making place value errors in subtraction. Start today's lesson with visual regrouping activity.</p>
+                        </div>
+                        <div class="learning-groups">
+                            <h3>📊 Learning Groups</h3>
+                            <div class="group group-a">
+                                <div class="group-header">
+                                    <span class="group-name">Group A - Foundational Gap</span>
+                                    <span class="group-count">12 students</span>
+                                </div>
+                                <p class="group-description">Needs prerequisite concept reset for place value</p>
+                            </div>
+                            <div class="group group-b">
+                                <div class="group-header">
+                                    <span class="group-name">Group B - Partial Misconception</span>
+                                    <span class="group-count">15 students</span>
+                                </div>
+                                <p class="group-description">Grasped concept but holds procedural bugs</p>
+                            </div>
+                            <div class="group group-c">
+                                <div class="group-header">
+                                    <span class="group-name">Group C - On Track</span>
+                                    <span class="group-count">8 students</span>
+                                </div>
+                                <p class="group-description">Mastered prerequisites, ready for peer tutoring</p>
+                            </div>
+                        </div>
+                        <div class="recommended-activity">
+                            <h3>📝 Recommended Activity</h3>
+                            <div class="activity-card">
+                                <h4>Visual Regrouping with Base-10 Blocks</h4>
+                                <p class="activity-time">⏱️ 7 minutes • Group A</p>
+                                <p class="activity-description">Use physical blocks to demonstrate borrowing in subtraction. Have students practice with 2-digit problems.</p>
+                                <div class="activity-materials">
+                                    <span class="material">🧱 Base-10 blocks</span>
+                                    <span class="material">📝 Individual slates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Start Class Assessment
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('remediation-screen')">
+                            <span class="btn-icon">🎯</span>
+                            View More Activities
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Screen -->
+        <div id="students-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Student Profiles</h1>
+                    <p class="subtitle">35 Students • Class 3-A</p>
+                </div>
+                <div class="content">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search students..." class="search-input">
+                    </div>
+                    <div class="filter-bar">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Group A</button>
+                        <button class="filter-btn">Group B</button>
+                        <button class="filter-btn">Group C</button>
+                    </div>
+                    <div class="student-list-expanded">
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">RK</div>
+                            <div class="student-details">
+                                <h4>Rahul Kumar</h4>
+                                <p class="student-group">Group A • 3 assessments</p>
+                                <p class="student-status">Needs place value support</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="progress-text">45% mastery</span>
+                            </div>
+                        </div>
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">PS</div>
+                            <div class="student-details">
+                                <h4>Priya Singh</h4>
+                                <p class="student-group">Group B • 2 assessments</p>
+                                <p class="student-status">Progressing well</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 72%"></div>
+                                </div>
+                                <span class="progress-text">72% mastery</span>
+                            </div>
+                        </div>
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">AK</div>
+                            <div class="student-details">
+                                <h4>Amit Kumar</h4>
+                                <p class="student-group">Group C • 4 assessments</p>
+                                <p class="student-status">Ready for peer tutoring</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 89%"></div>
+                                </div>
+                                <span class="progress-text">89% mastery</span>
+                            </div>
+                        </div>
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">SD</div>
+                            <div class="student-details">
+                                <h4>Sita Devi</h4>
+                                <p class="student-group">Group A • 1 assessment</p>
+                                <p class="student-status">Needs assessment</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                                <span class="progress-text">30% mastery</span>
+                            </div>
+                        </div>
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">VG</div>
+                            <div class="student-details">
+                                <h4>Vijay Gupta</h4>
+                                <p class="student-group">Group B • 3 assessments</p>
+                                <p class="student-status">Improving steadily</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span class="progress-text">65% mastery</span>
+                            </div>
+                        </div>
+                        <div class="student-card" onclick="showScreen('student-profile-screen')">
+                            <div class="student-avatar">NP</div>
+                            <div class="student-details">
+                                <h4>Neha Patel</h4>
+                                <p class="student-group">Group C • 2 assessments</p>
+                                <p class="student-status">Strong performer</p>
+                            </div>
+                            <div class="student-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%"></div>
+                                </div>
+                                <span class="progress-text">92% mastery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Capture Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Profile Screen -->
+        <div id="student-profile-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('students-screen')">← Back</button>
+                    <h1>Student Profile</h1>
+                </div>
+                <div class="content">
+                    <div class="profile-header">
+                        <div class="profile-avatar large">RK</div>
+                        <div class="profile-info">
+                            <h2>Rahul Kumar</h2>
+                            <p class="profile-details">Class 3-A • Roll No. 15</p>
+                            <div class="profile-badges">
+                                <span class="badge badge-a">Group A</span>
+                                <span class="badge badge-assessment">3 assessments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="competency-overview">
+                        <h3>Competency Overview</h3>
+                        <div class="competency-grid">
+                            <div class="competency-item">
+                                <div class="competency-name">Addition</div>
+                                <div class="competency-level high">85%</div>
+                            </div>
+                            <div class="competency-item">
+                                <div class="competency-name">Subtraction</div>
+                                <div class="competency-level low">45%</div>
+                            </div>
+                            <div class="competency-item">
+                                <div class="competency-name">Multiplication</div>
+                                <div class="competency-level medium">60%</div>
+                            </div>
+                            <div class="competency-item">
+                                <div class="competency-name">Place Value</div>
+                                <div class="competency-level low">35%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-assessments">
+                        <h3>Recent Assessments</h3>
+                        <div class="assessment-item">
+                            <div class="assessment-date">Today, 10:30 AM</div>
+                            <div class="assessment-problem">53 - 27 = ?</div>
+                            <div class="assessment-result incorrect">Answer: 34 (Correct: 26)</div>
+                            <div class="assessment-error">Place Value Error</div>
+                        </div>
+                        <div class="assessment-item">
+                            <div class="assessment-date">Yesterday, 2:15 PM</div>
+                            <div class="assessment-problem">45 + 28 = ?</div>
+                            <div class="assessment-result correct">Answer: 73 ✓</div>
+                            <div class="assessment-error">No errors</div>
+                        </div>
+                        <div class="assessment-item">
+                            <div class="assessment-date">2 days ago</div>
+                            <div class="assessment-problem">82 - 37 = ?</div>
+                            <div class="assessment-result incorrect">Answer: 55 (Correct: 45)</div>
+                            <div class="assessment-error">Place Value Error</div>
+                        </div>
+                    </div>
+                    <div class="recommended-actions">
+                        <h3>Recommended Actions</h3>
+                        <div class="action-item">
+                            <span class="action-icon">🎯</span>
+                            <div class="action-content">
+                                <h4>Focus on Place Value</h4>
+                                <p>Student consistently makes place value errors in subtraction</p>
+                            </div>
+                        </div>
+                        <div class="action-item">
+                            <span class="action-icon">📚</span>
+                            <div class="action-content">
+                                <h4>Visual Learning</h4>
+                                <p>Use base-10 blocks for regrouping practice</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            New Assessment
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('progress-screen')">
+                            <span class="btn-icon">📈</span>
+                            View Progress
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remediation Screen -->
+        <div id="remediation-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Remediation Activities</h1>
+                    <p class="subtitle">Targeted activities for Group A (12 students)</p>
+                </div>
+                <div class="content">
+                    <div class="activity-list">
+                        <div class="activity-card-detailed">
+                            <div class="activity-header">
+                                <h3>Visual Regrouping with Base-10 Blocks</h3>
+                                <span class="activity-tag">Place Value</span>
+                            </div>
+                            <div class="activity-meta">
+                                <span class="meta-item">⏱️ 7 minutes</span>
+                                <span class="meta-item">👥 Group A</span>
+                                <span class="meta-item">🧱 Physical</span>
+                            </div>
+                            <p class="activity-description">Use physical base-10 blocks to demonstrate borrowing in subtraction. Have students practice with 2-digit problems using blocks before written work.</p>
+                            <div class="activity-materials-list">
+                                <h4>Materials Needed:</h4>
+                                <div class="materials">
+                                    <span class="material-tag">Base-10 blocks</span>
+                                    <span class="material-tag">Individual slates</span>
+                                    <span class="material-tag">Chalkboard</span>
+                                </div>
+                            </div>
+                            <div class="activity-steps">
+                                <h4>Steps:</h4>
+                                <ol>
+                                    <li>Demonstrate 53 - 27 using blocks</li>
+                                    <li>Show how to "borrow" a ten</li>
+                                    <li>Students practice with blocks</li>
+                                    <li>Transfer to written notation</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="activity-card-detailed">
+                            <div class="activity-header">
+                                <h3>Number Line Jump Strategy</h3>
+                                <span class="activity-tag">Subtraction</span>
+                            </div>
+                            <div class="activity-meta">
+                                <span class="meta-item">⏱️ 5 minutes</span>
+                                <span class="meta-item">👥 Group A</span>
+                                <span class="meta-item">📝 Visual</span>
+                            </div>
+                            <p class="activity-description">Draw number lines on the floor. Students physically "jump" backward to solve subtraction problems, building kinesthetic understanding.</p>
+                            <div class="activity-materials-list">
+                                <h4>Materials Needed:</h4>
+                                <div class="materials">
+                                    <span class="material-tag">Chalk</span>
+                                    <span class="material-tag">Floor space</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-card-detailed">
+                            <div class="activity-header">
+                                <h3>Partitioning Numbers Game</h3>
+                                <span class="activity-tag">Place Value</span>
+                            </div>
+                            <div class="activity-meta">
+                                <span class="meta-item">⏱️ 8 minutes</span>
+                                <span class="meta-item">👥 Group B</span>
+                                <span class="meta-item">🎮 Game</span>
+                            </div>
+                            <p class="activity-description">Students break numbers into tens and ones, then rebuild them. Use playing cards to create random numbers for practice.</p>
+                            <div class="activity-materials-list">
+                                <h4>Materials Needed:</h4>
+                                <div class="materials">
+                                    <span class="material-tag">Playing cards</span>
+                                    <span class="material-tag">Paper</span>
+                                    <span class="material-tag">Pencils</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('briefing-screen')">
+                            <span class="btn-icon">🎯</span>
+                            Back to Briefing
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="btn-icon">📚</span>
+                            View All Activities
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Screen -->
+        <div id="progress-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('student-profile-screen')">← Back</button>
+                    <h1>Progress Tracking</h1>
+                    <p class="subtitle">Rahul Kumar • Last 30 Days</p>
+                </div>
+                <div class="content">
+                    <div class="progress-summary">
+                        <div class="summary-card positive">
+                            <div class="summary-icon">📈</div>
+                            <div class="summary-content">
+                                <h4>Overall Improvement</h4>
+                                <p class="summary-value">+15% this month</p>
+                            </div>
+                        </div>
+                        <div class="summary-card neutral">
+                            <div class="summary-icon">🎯</div>
+                            <div class="summary-content">
+                                <h4>Assessments Completed</h4>
+                                <p class="summary-value">3 this week</p>
+                            </div>
+                        </div>
+                        <div class="summary-card warning">
+                            <div class="summary-icon">⚠️</div>
+                            <div class="summary-content">
+                                <h4>Areas Needing Focus</h4>
+                                <p class="summary-value">Place Value, Subtraction</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="competency-progress">
+                        <h3>Competency Growth</h3>
+                        <div class="progress-item">
+                            <div class="progress-label">Addition</div>
+                            <div class="progress-track">
+                                <div class="progress-bar-chart" style="width: 85%"></div>
+                            </div>
+                            <div class="progress-value">85%</div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">Subtraction</div>
+                            <div class="progress-track">
+                                <div class="progress-bar-chart warning" style="width: 45%"></div>
+                            </div>
+                            <div class="progress-value">45%</div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">Multiplication</div>
+                            <div class="progress-track">
+                                <div class="progress-bar-chart" style="width: 60%"></div>
+                            </div>
+                            <div class="progress-value">60%</div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">Place Value</div>
+                            <div class="progress-track">
+                                <div class="progress-bar-chart warning" style="width: 35%"></div>
+                            </div>
+                            <div class="progress-value">35%</div>
+                        </div>
+                    </div>
+                    <div class="milestone-tracker">
+                        <h3>Recent Milestones</h3>
+                        <div class="milestone achieved">
+                            <div class="milestone-icon">✅</div>
+                            <div class="milestone-content">
+                                <h4>Mastered 2-digit Addition</h4>
+                                <p class="milestone-date">Achieved 3 days ago</p>
+                            </div>
+                        </div>
+                        <div class="milestone in-progress">
+                            <div class="milestone-icon">🔄</div>
+                            <div class="milestone-content">
+                                <h4>Working on Subtraction Regrouping</h4>
+                                <p class="milestone-date">Started 1 week ago</p>
+                            </div>
+                        </div>
+                        <div class="milestone upcoming">
+                            <div class="milestone-icon">🎯</div>
+                            <div class="milestone-content">
+                                <h4>Target: Master Place Value</h4>
+                                <p class="milestone-date">Expected in 2 weeks</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Assessment Check
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('remediation-screen')">
+                            <span class="btn-icon">🎯</span>
+                            Practice Activities
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Settings</h1>
+                </div>
+                <div class="content">
+                    <div class="settings-section">
+                        <h3>Account</h3>
+                        <div class="setting-item">
+                            <div class="setting-label">Teacher Name</div>
+                            <div class="setting-value">Mrs. Sharma</div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">School</div>
+                            <div class="setting-value">Government Primary School, District Center</div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Class</div>
+                            <div class="setting-value">3-A</div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>App Settings</h3>
+                        <div class="setting-item toggle">
+                            <div class="setting-label">Offline Mode</div>
+                            <div class="toggle-switch active">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle">
+                            <div class="setting-label">Auto-Sync when Online</div>
+                            <div class="toggle-switch active">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle">
+                            <div class="setting-label">Sound Effects</div>
+                            <div class="toggle-switch">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Language</h3>
+                        <div class="setting-item">
+                            <div class="setting-label">Primary Language</div>
+                            <div class="setting-value">English</div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Secondary Language</div>
+                            <div class="setting-value">Hindi</div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Data & Storage</h3>
+                        <div class="setting-item">
+                            <div class="setting-label">Storage Used</div>
+                            <div class="setting-value">234 MB / 1 GB</div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Last Sync</div>
+                            <div class="setting-value">Today, 9:15 AM</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-secondary">
+                            <span class="btn-icon">🔄</span>
+                            Sync Now
+                        </button>
+                        <button class="btn btn-tertiary">
+                            <span class="btn-icon">📤</span>
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Gallery Screen -->
+        <div id="assessment-gallery-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Assessment Gallery</h1>
+                    <p class="subtitle">Handwriting Captures & AI Analysis</p>
+                </div>
+                <div class="content">
+                    <div class="gallery-intro">
+                        <p>View actual handwriting samples and AI-powered analysis for student assessments.</p>
+                    </div>
+                    
+                    <!-- Student 1 Assessment -->
+                    <div class="assessment-gallery-item">
+                        <div class="gallery-header">
+                            <div class="student-info-gallery">
+                                <div class="student-avatar">RK</div>
+                                <div>
+                                    <h3>Rahul Kumar</h3>
+                                    <p class="gallery-date">Today, 10:30 AM</p>
+                                </div>
+                            </div>
+                            <span class="gallery-badge incorrect">Place Value Error</span>
+                        </div>
+                        
+                        <div class="handwriting-display">
+                            <div class="handwriting-paper">
+                                <div class="paper-lines">
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">53 - 27 = 34</span>
+                                        <span class="handwriting-mark error-mark">✗</span>
+                                    </div>
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">45 + 28 = 73</span>
+                                        <span class="handwriting-mark correct-mark">✓</span>
+                                    </div>
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">82 - 37 = 55</span>
+                                        <span class="handwriting-mark error-mark">✗</span>
+                                    </div>
+                                </div>
+                                <div class="paper-mockup-shadow"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-panel">
+                            <div class="analysis-header">
+                                <h4>AI Analysis Results</h4>
+                            </div>
+                            <div class="analysis-details">
+                                <div class="analysis-item">
+                                    <span class="analysis-label">OCR Confidence:</span>
+                                    <span class="analysis-value high">87%</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Problems Analyzed:</span>
+                                    <span class="analysis-value">3</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Correct Answers:</span>
+                                    <span class="analysis-value success">1 (33%)</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Primary Error:</span>
+                                    <span class="analysis-value error">Place Value Confusion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="error-breakdown">
+                                <h5>Error Breakdown</h5>
+                                <div class="error-detail-item">
+                                    <div class="error-problem">53 - 27 = 34</div>
+                                    <div class="error-explanation">
+                                        <span class="error-label">Expected:</span> 26
+                                        <span class="error-label">Pattern:</span> Subtracted smaller digit from larger (7-3=4, 5-2=3)
+                                    </div>
+                                </div>
+                                <div class="error-detail-item">
+                                    <div class="error-problem">82 - 37 = 55</div>
+                                    <div class="error-explanation">
+                                        <span class="error-label">Expected:</span> 45
+                                        <span class="error-label">Pattern:</span> Same place value error pattern
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-insight">
+                                <h5>🤖 AI Insight</h5>
+                                <p>Student consistently demonstrates place value misunderstanding in subtraction. The pattern suggests they subtract digits individually without considering positional value. Recommendation: Use visual base-10 block activities to demonstrate regrouping concept.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 2 Assessment -->
+                    <div class="assessment-gallery-item">
+                        <div class="gallery-header">
+                            <div class="student-info-gallery">
+                                <div class="student-avatar">PS</div>
+                                <div>
+                                    <h3>Priya Singh</h3>
+                                    <p class="gallery-date">Today, 11:15 AM</p>
+                                </div>
+                            </div>
+                            <span class="gallery-badge warning">Operation Confusion</span>
+                        </div>
+                        
+                        <div class="handwriting-display">
+                            <div class="handwriting-paper">
+                                <div class="paper-lines">
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">12 × 3 = 36</span>
+                                        <span class="handwriting-mark correct-mark">✓</span>
+                                    </div>
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">15 + 8 = 7</span>
+                                        <span class="handwriting-mark error-mark">✗</span>
+                                    </div>
+                                    <div class="handwriting-row">
+                                        <span class="handwritten-text problem-text">24 ÷ 6 = 4</span>
+                                        <span class="handwriting-mark correct-mark">✓</span>
+                                    </div>
+                                </div>
+                                <div class="paper-mockup-shadow"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-panel">
+                            <div class="analysis-header">
+                                <h4>AI Analysis Results</h4>
+                            </div>
+                            <div class="analysis-details">
+                                <div class="analysis-item">
+                                    <span class="analysis-label">OCR Confidence:</span>
+                                    <span class="analysis-value high">92%</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Problems Analyzed:</span>
+                                    <span class="analysis-value">3</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Correct Answers:</span>
+                                    <span class="analysis-value success">2 (67%)</span>
+                                </div>
+                                <div class="analysis-item">
+                                    <span class="analysis-label">Primary Error:</span>
+                                    <span class="analysis-value warning">Operation Confusion</span>
+                                </div>
+                            </div>
+                            
+                            <div class="error-breakdown">
+                                <h5>Error Breakdown</h5>
+                                <div class="error-detail-item">
+                                    <div class="error-problem">15 + 8 = 7</div>
+                                    <div class="error-explanation">
+                                        <span class="error-label">Expected:</span> 23
+                                        <span class="error-label">Pattern:</span> Subtracted instead of added (15-8=7)
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-insight">
+                                <h5>🤖 AI Insight</h5>
+                                <p>Student shows confusion between addition and subtraction operations. This may indicate a need for more practice with operation symbols and their meanings. Recommendation: Use visual activities that clearly distinguish between addition (+) and subtraction (-) contexts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('capture-screen')">
+                            <span class="btn-icon">📷</span>
+                            Capture New Assessment
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('results-screen')">
+                            <span class="btn-icon">📋</span>
+                            View Detailed Results
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Recording Screen -->
+        <div id="voice-recording-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Voice Assessment</h1>
+                    <p class="subtitle">Literacy & Reading Fluency Analysis</p>
+                </div>
+                <div class="content">
+                    <div class="voice-setup">
+                        <div class="student-selector">
+                            <label>Select Student:</label>
+                            <select class="voice-select">
+                                <option>Rahul Kumar</option>
+                                <option>Priya Singh</option>
+                                <option>Amit Kumar</option>
+                                <option>Sita Devi</option>
+                            </select>
+                        </div>
+                        <div class="assessment-type">
+                            <label>Assessment Type:</label>
+                            <select class="voice-select">
+                                <option>Reading Fluency</option>
+                                <option>Phonics Check</option>
+                                <option>Comprehension</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-recorder">
+                        <div class="recording-visualizer">
+                            <div class="waveform">
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                                <div class="wave-bar"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="recording-controls">
+                            <div class="timer-display">
+                                <span class="timer">00:00</span>
+                                <span class="timer-label">/ 01:00</span>
+                            </div>
+                            
+                            <div class="control-buttons">
+                                <button class="record-btn" id="recordBtn">
+                                    <span class="record-icon">🎤</span>
+                                    <span class="record-text">Start Recording</span>
+                                </button>
+                                <button class="stop-btn" id="stopBtn" disabled>
+                                    <span class="stop-icon">⏹️</span>
+                                    <span class="stop-text">Stop</span>
+                                </button>
+                                <button class="playback-btn" id="playbackBtn" disabled>
+                                    <span class="playback-icon">▶️</span>
+                                    <span class="playback-text">Play</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="recording-tips">
+                            <h4>📝 Recording Tips</h4>
+                            <ul>
+                                <li>Ensure quiet environment</li>
+                                <li>Hold phone 8-12 inches from student</li>
+                                <li>Ask student to read clearly and naturally</li>
+                                <li>Recording will stop automatically at 60 seconds</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-preview">
+                        <h4>🤖 AI Analysis Preview</h4>
+                        <div class="preview-item">
+                            <span class="preview-label">Speech Recognition:</span>
+                            <span class="preview-value">Whisper AI (Hindi/English)</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-label">Fluency Metrics:</span>
+                            <span class="preview-value">Words per minute, accuracy</span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-label">Error Detection:</span>
+                            <span class="preview-value">Phonics, pronunciation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="showScreen('home-screen')">
+                            <span class="btn-icon">📊</span>
+                            Analyze Recording
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('home-screen')">
+                            <span class="btn-icon">🏠</span>
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Report Screen -->
+        <div id="weekly-report-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <button class="back-btn" onclick="showScreen('home-screen')">← Back</button>
+                    <h1>Weekly Progress Report</h1>
+                    <p class="subtitle">Class 3-A • Week of September 4-10, 2026</p>
+                </div>
+                <div class="content">
+                    <div class="report-summary">
+                        <div class="summary-card positive">
+                            <div class="summary-icon">📈</div>
+                            <div class="summary-content">
+                                <h4>Overall Growth</h4>
+                                <p class="summary-value">+18% this week</p>
+                            </div>
+                        </div>
+                        <div class="summary-card neutral">
+                            <div class="summary-icon">📝</div>
+                            <div class="summary-content">
+                                <h4>Assessments Completed</h4>
+                                <p class="summary-value">47 total</p>
+                            </div>
+                        </div>
+                        <div class="summary-card warning">
+                            <div class="summary-icon">⚠️</div>
+                            <div class="summary-content">
+                                <h4>Students Needing Focus</h4>
+                                <p class="summary-value">8 students</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="weekly-highlights">
+                        <h3>🎯 Weekly Highlights</h3>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✅</span>
+                            <div class="highlight-content">
+                                <h4>Place Value Understanding Improved</h4>
+                                <p>Students showing 40% improvement in place value concepts after visual regrouping activities</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📊</span>
+                            <div class="highlight-content">
+                                <h4>Operation Confusion Decreased</h4>
+                                <p>Operation errors reduced from 35% to 22% through symbol recognition practice</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">👥</span>
+                            <div class="highlight-content">
+                                <h4>Group C Expanded</h4>
+                                <p>5 students moved from Group B to Group C (On Track)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="competency-progress-weekly">
+                        <h3>📊 Competency Progress This Week</h3>
+                        <div class="progress-item-weekly">
+                            <div class="progress-label-weekly">Addition</div>
+                            <div class="progress-track-weekly">
+                                <div class="progress-bar-weekly" style="width: 85%"></div>
+                            </div>
+                            <div class="progress-value-weekly">+12%</div>
+                        </div>
+                        <div class="progress-item-weekly">
+                            <div class="progress-label-weekly">Subtraction</div>
+                            <div class="progress-track-weekly">
+                                <div class="progress-bar-weekly warning" style="width: 62%"></div>
+                            </div>
+                            <div class="progress-value-weekly">+18%</div>
+                        </div>
+                        <div class="progress-item-weekly">
+                            <div class="progress-label-weekly">Multiplication</div>
+                            <div class="progress-track-weekly">
+                                <div class="progress-bar-weekly" style="width: 68%"></div>
+                            </div>
+                            <div class="progress-value-weekly">+8%</div>
+                        </div>
+                        <div class="progress-item-weekly">
+                            <div class="progress-label-weekly">Place Value</div>
+                            <div class="progress-track-weekly">
+                                <div class="progress-bar-weekly warning" style="width: 48%"></div>
+                            </div>
+                            <div class="progress-value-weekly">+22%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="top-performers">
+                        <h3>🏆 Top Performers This Week</h3>
+                        <div class="performer-list">
+                            <div class="performer-item">
+                                <div class="performer-avatar">NP</div>
+                                <div class="performer-info">
+                                    <h4>Neha Patel</h4>
+                                    <p>+25% improvement</p>
+                                </div>
+                                <div class="performer-badge">⭐</div>
+                            </div>
+                            <div class="performer-item">
+                                <div class="performer-avatar">AK</div>
+                                <div class="performer-info">
+                                    <h4>Amit Kumar</h4>
+                                    <p>+20% improvement</p>
+                                </div>
+                                <div class="performer-badge">⭐</div>
+                            </div>
+                            <div class="performer-item">
+                                <div class="performer-avatar">PS</div>
+                                <div class="performer-info">
+                                    <h4>Priya Singh</h4>
+                                    <p>+18% improvement</p>
+                                </div>
+                                <div class="performer-badge">⭐</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations">
+                        <h3>💡 Recommendations for Next Week</h3>
+                        <div class="recommendation-item">
+                            <span class="rec-icon">🎯</span>
+                            <p>Focus on regrouping with Group A (3 students still struggling)</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="rec-icon">📚</span>
+                            <p>Introduce multiplication arrays for Group B students</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="rec-icon">👥</span>
+                            <p>Peer tutoring program with Group C students helping Group A</p>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="window.print()">
+                            <span class="btn-icon">🖨️</span>
+                            Print Report
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="btn-icon">📤</span>
+                            Share Report
+                        </button>
+                        <button class="btn btn-tertiary" onclick="showScreen('dashboard-screen')">
+                            <span class="btn-icon">📊</span>
+                            View Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Onboarding Tutorial Screen -->
+        <div id="onboarding-screen" class="screen">
+            <div class="container">
+                <div class="header">
+                    <h1>Welcome to BanyanBridgeSaarthi</h1>
+                    <p class="subtitle">Your AI-Powered Classroom Co-Pilot</p>
+                </div>
+                <div class="content">
+                    <div class="tutorial-slides">
+                        <div class="tutorial-slide active" id="slide1">
+                            <div class="slide-icon">🎯</div>
+                            <h3>Diagnose Learning Gaps</h3>
+                            <p>Capture student work with your phone camera. Our AI analyzes handwriting and identifies specific misconceptions.</p>
+                        </div>
+                        <div class="tutorial-slide" id="slide2">
+                            <div class="slide-icon">🤖</div>
+                            <h3>AI-Powered Insights</h3>
+                            <p>Get instant analysis of common error patterns like place value confusion, operation mistakes, and regrouping issues.</p>
+                        </div>
+                        <div class="tutorial-slide" id="slide3">
+                            <div class="slide-icon">👥</div>
+                            <h3>Smart Student Grouping</h3>
+                            <p>Automatically groups students into learning levels: Foundational Gap, Partial Misconception, and On Track.</p>
+                        </div>
+                        <div class="tutorial-slide" id="slide4">
+                            <div class="slide-icon">🎯</div>
+                            <h3>Targeted Remediation</h3>
+                            <p>Receive specific activity recommendations using zero-cost materials to address each group's needs.</p>
+                        </div>
+                        <div class="tutorial-slide" id="slide5">
+                            <div class="slide-icon">📈</div>
+                            <h3>Track Progress Over Time</h3>
+                            <p>Monitor individual and class-wide growth with detailed competency tracking and weekly reports.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-navigation">
+                        <div class="slide-dots">
+                            <span class="dot active" data-slide="1"></span>
+                            <span class="dot" data-slide="2"></span>
+                            <span class="dot" data-slide="3"></span>
+                            <span class="dot" data-slide="4"></span>
+                            <span class="dot" data-slide="5"></span>
+                        </div>
+                        <div class="tutorial-buttons">
+                            <button class="btn btn-secondary" id="prevBtn" disabled>
+                                <span class="btn-icon">←</span>
+                                Previous
+                            </button>
+                            <button class="btn btn-primary" id="nextBtn">
+                                Next
+                                <span class="btn-icon">→</span>
+                            </button>
+                            <button class="btn btn-primary" id="startBtn" style="display: none;">
+                                Get Started
+                                <span class="btn-icon">🚀</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="skip-tutorial">
+                        <button class="skip-btn" onclick="showScreen('home-screen')">Skip Tutorial</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Indicator -->
+    <div class="processing-indicator" id="processingIndicator">
+        <div class="processing-spinner"></div>
+        <div class="processing-text">AI Analysis in Progress</div>
+        <div class="processing-steps">
+            <div class="step" id="step1">📷 Capturing image...</div>
+            <div class="step" id="step2">🔍 OCR processing...</div>
+            <div class="step" id="step3">🤖 Analyzing patterns...</div>
+            <div class="step" id="step4">📊 Generating insights...</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(registration => console.log('Service Worker registered'))
+                .catch(error => console.log('Service Worker registration failed'));
+        }
+    </script>
+</body>
+</html>
