@@ -11,3 +11,4 @@ How to open and build
 
 Notes
 - This is a minimal skeleton. Feature screens referenced in the main UI are placeholders (toasts). Implementations can be added under `app/src/main/java` and new activities/fragments under `res/layout`.
+- CI trigger: small update to kick off workflow runs.
