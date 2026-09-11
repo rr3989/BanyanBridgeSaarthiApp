@@ -29,14 +29,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Use Gradle action
+      - name: Use Gradle action to build release
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.1.1'
-
-      - name: Build Release APK
-        working-directory: android
-        run: gradle :app:assembleRelease --no-daemon
+          arguments: '-p android :app:assembleRelease --no-daemon'
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
