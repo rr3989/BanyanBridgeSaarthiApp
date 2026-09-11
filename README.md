@@ -1,14 +1,12 @@
-# BanyanBridgeSaarthi - UI Mockup (1-Hour Prototype)
+# BanyanBridgeSaarthi -Mobile Application
 
 ## Overview
-This is a 1-hour UI mockup for BanyanBridgeSaarthi, an AI-powered diagnostic and pedagogical co-pilot for resource-constrained classrooms in India.
+This is a mobile application called BanyanBridgeSaarthi, an AI-powered diagnostic and pedagogical co-pilot for resource-constrained classrooms in India.
 
 ## What This Is
 - **Visual proof of concept** demonstrating the user flow
-- **Static UI mockup** with placeholder data
 - **14 interactive screens** showing the complete experience
-- **No functional features** - just navigation and visuals
-
+- 
 ## Screens Included
 
 ### 1. Home Screen
